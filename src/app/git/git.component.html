@@ -1,0 +1,105 @@
+
+<div style="margin-top:10px;min-width:900px !important" *ngIf = "!flagged"> <!-- to make it responsive -->
+  <h1>   ​Simple​ ​but​ ​fast​ ​web​ ​app​ ​to​ ​search​ ​through​ ​GitHub</h1>
+  <div style="margin-left:3%" class = "row">
+      <input  class = "form-control searchinput" [ngModel] ="searchItem" placeholder="Search for names from git database.." (ngModelChange) ="searchItem=$event"/> 
+      <button  class = "btn btn-primary search" (click)="git()" > Search </button>
+      <button  class = "btn btn-primary flag" (click)="activateflag()"  [disabled]= "flaggedItems.length < 1"> Flag </button>
+ 
+  </div>
+  <p style="margin-left:3%;color:red" > <b>{{Noresult}} </b></p>
+          <!-- items being paged -->
+          <div class="rows" *ngIf = "allItems">
+              <ul class="headerclass">
+                  <li style="width:5%">    </li>
+                    <li style="width:25%">ID</li>
+                    <li style="width:25%">NAME</li>
+                    <li style="width:45%">Description</li>
+                </ul>
+          </div>
+          <div *ngFor="let item of pagedItems">
+  
+              <ul class="body" >
+                  <li style="width:5%;font-size:25px"> <input type="checkbox"  
+                     (click)= "flag(item.id)"> </li>  
+                  <li style="width:25%"> {{item.id}}  </li>
+                  <li style="width:25%">{{item.name}}</li>
+                  <li style="width:45%">{{item.description}}</li>
+                  </ul>
+                  <hr />
+             
+          </div> 
+              <!-- pager -->
+          <div class="text-center" style = "margin-top:2%" >
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+              <li [ngClass]="{disabled:pager.currentPage === 1}">
+                  <a (click)="setPage(1)">First</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === 1}">
+                  <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+              </li>
+              <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                  <a (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                  <a (click)="setPage(pager.currentPage + 1)">Next</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                  <a (click)="setPage(pager.totalPages)">Last</a>
+              </li>
+          </ul>
+        </div>   
+
+      </div>
+
+
+                      <!--   flagged page -->
+<div *ngIf ="flagged">
+        <h1>   Flagged items </h1>
+ <div class="rows" *ngIf ="flaggedItems.length > 0">
+        <ul class="headerclass">
+            <li style="width:5%">    </li>
+              <li style="width:25%">ID</li>
+              <li style="width:25%">NAME</li>
+              <li style="width:45%">Description</li>
+          </ul>
+    </div>
+    <div *ngFor="let flag of flaggedItems">
+    <div *ngFor="let item of pagedItems">
+    <div *ngIf ="flag == item.id ">
+        <ul class="body" >
+            <li style="width:5%;font-size:25px"> </li>  
+            <li style="width:25%"> {{item.id}}  </li>
+            <li style="width:25%">{{item.name}}</li>
+            <li style="width:45%">{{item.description}}</li>
+            </ul>
+            <hr />
+          </div>
+        </div> 
+    </div> 
+        <!-- pager -->
+    <div class="text-center" style = "margin-top:2%" >
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPageFlag(1)">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPageFlag(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPageFlag(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPageFlag(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPageFlag(pager.totalPages)">Last</a>
+        </li>
+    </ul>
+    </div> 
+    <div  *ngIf ="flaggedItems.length < 1">
+            <h1 style="margin-left:3%;color:red"> No Flagged data</h1> 
+        </div>  
+        <button  class = "btn btn-primary flag" (click)="back()"> Back </button>
+</div>
+

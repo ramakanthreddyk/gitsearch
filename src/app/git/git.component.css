@@ -1,0 +1,81 @@
+
+    .headerclass{
+        border-top:2px solid black;
+        border-bottom:2px solid black;
+        font-weight: bold;
+        background: white;
+        table-layout: fixed;
+        display: table;
+         width: 100% !important;
+         text-align: center;
+      }
+      .headerclass>li{
+        font-weight: bold;
+      font-size:16px;
+      list-style-type: none;
+      display: table-cell;
+      word-wrap: break-word;
+      font-size:16px;
+      }
+      .body{
+        table-layout: fixed;
+        display: table;
+         width: 100%;
+         text-align: center;
+      }
+      .body>li{
+        list-style-type: none;
+        display: table-cell;
+        word-wrap: break-word;
+  
+      }
+  h1{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom:3%
+  }
+  
+  
+  
+  .search {
+    text-align: center;
+    width: 10%;
+    float:right;
+    margin-right:58%
+  }
+  .flag {
+    text-align: center;
+    width: 10%;
+    float:right;
+    margin-right:5%
+   
+  }
+  .searchinput{
+    width:30%;
+    float:left;
+  }
+  a {
+    cursor: pointer;
+}
+.orange{
+  color:orange;
+  opacity: 100 !important;
+}
+.glyphicon-star{
+opacity: 0.1;
+cursor:pointer;
+}
+.glyphicon-star:hover{
+   color:orange;
+   opacity: 100 !important;
+}
+
+ input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+
+} 
